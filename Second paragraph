@@ -31,4 +31,12 @@ a_list[a:b:c]  a是起始位置 b是截止位置 c是步长 但是其不会因�
 可以实现列表的增，删，元素替换等
 注意：切片是浅复制，就和两个对象指向相同一个列表值不同。实际是重新复制了一个列表值，在内存中重新分配对象。
 
+1.5列表排序
+a_list.sort()/sort(reverse=true)
+sorted(a)/sorted(a,reverse=true)  //逆序排序，从大到小
+a.reverse()是列表元素翻转
+new_a=reversed(a) 对列表对象进行逆序排序，但是返回的是一个迭代对象，只能用一次
+ps: sum() max() min() len() zip(a,b,c)一一对应再组成新的元组   enumerate()???枚举对象？？？
 
+1.6列表推导式
+结果是列表
