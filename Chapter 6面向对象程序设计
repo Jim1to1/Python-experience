@@ -1,3 +1,40 @@
 POINT：
 面向对象的关键是如何合理的定义类以及管理这些类的关系
 
+
+***************************理解Python的语法，一个很重要的一点就是，开发者是怎么简单怎么来的...********************************
+
+1. 类的定义
+格式；
+class demo:
+  text='string'                      #类属性，可以直接demo.text输出
+  def _init_(self,name,other):       #构造函数
+      self._code=name                #这里带下划线的就是实例属性和私有属性
+      self.several=other             #仅仅是实例属性，实例属性的特征就是self开头，并且用对象访问a._code/a.serveral
+  def _sever(self,quanti):           #私有方法，所有方法都要有self参数，用来表示这个对象
+  @classmethod                       #类方法，可以通过demo.classme1/a.classme1调用
+  def classme1(cls):
+        print 3
+  @staticmethod                      #静态方法，可以通过demo.classme1/a.classme1调用
+  def  sample(self):
+        print 'string'
+        print self._flag
+     <-----语句>
+     <-----语句>
+     <-----语句>
+     <-----语句>
+     <-----语句>
+     
+  a=demo(1,2)
+  a.text-----对象可以访问类属性
+ ************************Python作为一个动态脚本语言，可以动态修改属性和增加属性，
+ 2.类的方法
+ 类的方法是对象具有的行为，python的构造函数，析构函数，私有属性或方法都是通过名称约定区分的。
+ 其方法属于的类别的区分是依据命名来区别的
+ _iniy_/_del_/_name_    ----表示系统文件
+ _demo1  ---表示私有方法/属性
+ 
+ 构造函数 ：
+  def _init_(self,name,other):
+     self._code=name                #这里带下划线的就是实例属性和私有属性
+     self.several=other             #仅仅是实例属性
