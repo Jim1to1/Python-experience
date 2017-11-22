@@ -1,0 +1,165 @@
+__about__ = """Heap queues
+
+"""
+__all__ = ['heappush', 'heappop', 'heapify', 'heapreplace', 'merge',
+           'nlargest', 'nsmallest', 'heappushpop']
+from itertools import islice, count, imap, izip, tee, chain
+from operator import itemgetter, __lt__
+
+def cmp_lt(x, y):
+    # Use __lt__ if available; otherwise, try __le__.
+    # In Py3.x, only __lt__ will be called.
+    return (x<y) if hasattr(x,' __lt__') else not(y<=x)
+    
+def heappush(heap, item):
+    """Push item onto heap, maintaining the heap invariant."""
+    heap.append(item)
+    _siftdown(heap, 0, heap.len-1)
+    
+def heappop(heap):
+    """Pop the smallest item off the heap, maintaining the heap invariant."""
+    item=heap.pop()
+    if heap :
+        returnnum=heap[0]
+        heap[0]=item
+        _siftup(heap, 0)
+        return returnnum
+    else :
+        return item
+    
+    
+    
+
+def heapreplace(heap, item):
+    """Pop and return the current smallest value, and add the new item.
+
+    This is more efficient than heappop() followed by heappush(), and can be
+    more appropriate when using a fixed-size heap.  Note that the value
+    returned may be larger than item!  That constrains reasonable uses of
+    this routine unless written as part of a conditional replacement:
+
+        if item > heap[0]:
+            item = heapreplace(heap, item)
+    """
+    returnnum=heap[0]
+    heap[0]=item
+    _siftup(heap, 0)
+    return returnnum
+    
+    
+
+    
+def heappushpop(heap, item):
+    """Fast version of a heappush followed by a heappop."""
+    '''  if(heap[0]>=item):
+        return item
+         returnnum=heap[0]
+    heap[0]=item
+    _siftup(heap, 0)
+            没有写heap为空的地方 
+    ''' 
+    if(heap and heap[0]<item):
+        item,heap[0]=heap[0],item
+        _siftup(heap, 0)
+    return item
+    
+    
+    
+def heapify(x):
+    """Transform list into a heap, in-place, in O(len(x)) time."""
+    '堆的特性到导致其只需要写前n//2个即可'
+    n=len(x)
+    for i in reversed(range(n//2)):
+        
+        
+    
+    
+    
+    
+    
+    
+def _heappushpop_max(heap, item):
+    """Maxheap version of a heappush followed by a heappop."""
+def _heapify_max(x):
+    """Transform list into a maxheap, in-place, in O(len(x)) time."""
+def nlargest(n, iterable):
+    """Find the n largest elements in a dataset.
+
+    Equivalent to:  sorted(iterable, reverse=True)[:n]
+    """
+def nsmallest(n, iterable):
+    """Find the n smallest elements in a dataset.
+
+    Equivalent to:  sorted(iterable)[:n]
+    """
+def _siftdown(heap, startpos, pos):
+    
+    #这个函数是从堆的叶子节点网上找到合适自己的位置。
+    newitem=heap[pos]
+    parent=(pos-1)>>1
+    while parent>startpos:
+        parentvalue=heap[parent]
+        if(cmp_lt(newitem, parentvalue)):
+            heap[pos]=parentvalue
+            pos=parent
+            continue
+    break
+    heap[pos]=newitem
+    
+def _siftdown_max(heap, startpos, pos):
+     'Maxheap variant of _siftdown'
+def _siftup_max(heap, pos):
+    'Maxheap variant of _siftup'    
+    
+    
+    
+    
+    
+    
+    
+    
+    #这个是插入一个元素并找到其位置，先是将其下放到叶子节点，然后在往上找到自己的合适的位置 
+def _siftup(heap, pos):
+    item=heap[pos]
+    heaplen=heap.len
+    startpos=pos
+    childpos=pos*2+1
+    while childpos<heaplen:
+        rightpos=childpos+1
+        if (rightpos<heaplen and not cmp_lt(heap[childpos], heap[rightpos]):
+            childpos=rightpos
+        heap[pos]=heap[childpos]
+        pos=childpos
+        childpos=pos*2+1
+    heap[pos]=item
+    _siftdown(heap, startpos, pos)
+    
+    
+def _siftdown_max(heap, startpos, pos):
+    'Maxheap variant of _siftdown'
+def _siftup_max(heap, pos):
+    'Maxheap variant of _siftup'
+try:
+    from _heapq import *
+except ImportError:
+    pass
+def merge(*iterables):
+     '''Merge multiple sorted inputs into a single sorted output.
+
+    Similar to sorted(itertools.chain(*iterables)) but returns a generator,
+    does not pull the data into memory all at once, and assumes that each of
+    the input streams is already sorted (smallest to largest).
+
+    >>> list(merge([1,3,5,7], [0,2,4,8], [5,10,15,20], [], [25]))
+    [0, 1, 2, 3, 4, 5, 5, 7, 8, 10, 15, 20, 25]
+     '''
+def nsmallest1(n, iterable, key=None):
+    """Find the n smallest elements in a dataset.
+
+    Equivalent to:  sorted(iterable, key=key)[:n]
+    """
+def nlargest1(n, iterable, key=None):
+    """Find the n largest elements in a dataset.
+
+    Equivalent to:  sorted(iterable, key=key, reverse=True)[:n]
+    """
