@@ -1,0 +1,20 @@
+
+with open(,'') as fp:
+      fp.read/write 
+      
+      
+      
+区别就是读文本文件还是二进制文件，具体使用再说
+
+
+
+
+connect,execute,commit.close  ---sqlite3
+
+
+
+
+
+frame的子类 ，运用父类的构造函数
+add button/bind statictext textctrl menu popupmenu  wx.EVT_MENU 
+messagebox...   radiobutton/checkbutton/combobox  lsitbox treectrl 
